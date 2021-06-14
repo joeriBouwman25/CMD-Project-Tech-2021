@@ -2,7 +2,7 @@ const Users = require('../models/users')
 
 // Global variables
 const musicListBanner = '/images/banners/banner mmm-musiclist.png'
-const sessionID = '1128bae9-5a62-4905-a404-2c9386e26df9' // Fake sessionID for now
+const sessionID = '1138596383' // Fake sessionID for now
 const heartIcon = '/images/icons/white heart.png'
 const matchBanner = '/images/banners/Banner MMM-Match.png'
 

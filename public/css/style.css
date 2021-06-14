@@ -380,9 +380,9 @@ form button:last-of-type {
   color: #fff;
 }
 
-.hiddenForm {
+/* .hiddenForm {
   display: none;
-}
+} */
 
 #newMatch {
   position: absolute;
@@ -443,6 +443,15 @@ form button:last-of-type {
   max-width: 0;
 }
 
+#newMatchCount {
+  top: 13%;
+  left: 52%;
+  position: absolute;
+  background-color: #1db954;
+  padding: 0.7em;
+  border-radius: 50%;
+}
+
 footer {
   position: fixed;
   bottom: 0;
@@ -499,5 +508,10 @@ footer a {
 
 audio {
   margin-top: 0.3em;
+  height: 2em;
+  /* display: none; */
+}
+
+.hidden {
   display: none;
 }

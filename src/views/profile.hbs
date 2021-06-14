@@ -17,21 +17,18 @@
     <article>
         <img src='{{albumArt}}' alt="favourite song 1">
         <div>
-        <audio src="{{source}}"></audio>
-        <button class='play'><span></span></button>
+        <button class='hidden' class='play'><span></span></button>
         <h2>{{title}}</h2>
         <p>{{artist}}</p>
+        <audio src="{{source}}" controls ></audio>
+            {{!-- <form action="/profile" method="post" class="hiddenForm">
+        <input type="text" name="search" placeholder="search for artist or song title" class="hiddenForm"> --}}
+        {{!-- <button class="hiddenForm">Search</button> --}}
         </div>
-    </article>
-
-{{/each}}
-<button id="changeSongs">Change Songs</button>
-<article>
-    <form action="/profile" method="post" class="hiddenForm">
-        <input type="text" name="search" placeholder="search for artist or song title" class="hiddenForm">
-        <button class="hiddenForm">Search</button>
     </form>
     </article>
+{{/each}}
+<button id="changeSongs">change songs</button>
 {{#each data}}
     <p>{{this}}</p>
 {{/each}}

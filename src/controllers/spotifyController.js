@@ -18,10 +18,10 @@ const searchSongs = async (req, res) => {
 
   if (accessData) {
     const token = accessData.access_token
-    const searchInput = req.body.search
+    const searchInput = 'happy'
     const albumData = await request({
       method: 'GET',
-      uri: `https://api.spotify.com/v1/search?q=${searchInput}&type=track&limit=5&market=NL`,
+      uri: `https://api.spotify.com/v1/search?q=${searchInput}&type=track&limit=15&market=NL`,
       headers: {
         Authorization: `Bearer ${token}`
       },
@@ -30,7 +30,7 @@ const searchSongs = async (req, res) => {
     const albumArt = albumData.tracks.items.map((albums) => albums.preview_url)
     const names = albumData.tracks.items.map((names) => names.artists[0].name)
 
-    console.log(names)
+    console.log(albumData.tracks.items)
     res.render('profile', {
       heartIcon,
       banner: mainBanner,
