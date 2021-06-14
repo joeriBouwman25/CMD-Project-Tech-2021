@@ -1,20 +1,22 @@
 const music = document.querySelectorAll('audio')
 const button = document.querySelectorAll('.musicList article div button')
-// const musicListButtons = document.querySelectorAll('.musicList article div button')
 const icon = document.querySelectorAll('span')
 
 const match = document.getElementById('newMatch')
 const counterSpan = document.getElementById('newMatchCount')
-const matchCheck = document.getElementsByClassName('home')
+
+const myStorage = window.localStorage
+
 let a = true
 
+// change layout when JS is enabled
 button.forEach(playButton => playButton.classList.remove('hidden'))
-console.log(button)
 music.forEach(audioElement => audioElement.classList.add('hidden'))
+
 // play music and change play button
 for (let i = 0; i < button.length; i++) {
   const playMusic = () => {
-    if (a === true) {
+    if (a) {
       music[i].play()
       icon[i].classList.add('pause')
       a = false
@@ -36,34 +38,28 @@ for (let i = 0; i < button.length; i++) {
   music[i].addEventListener('ended', changeIcon)
 }
 
-const newMatch = (req, res) => {
-  let i = 1
-  const counter = () => { // closure
-    i++
-    sessionStorage.setItem('counter', i)
-  }
-  return counter
-    .then(counterSpan.innerHTML = i)
+// working on match counter with closure
+const newMatch = () => {
+  counterSpan.classList.remove('hidden')
+  const amount = myStorage.getItem('counter')
+
+  if (!amount) return myStorage.setItem('counter', 1)
+  myStorage.setItem('counter', +amount + 1)
 }
 
 if (!match) {
   console.log('sorry no match yet')
 } else {
-  match.addEventListener('animationend', newMatch, false)
+  match.addEventListener('animationend', newMatch)
 }
 
-if (matchCheck[0]) {
-  const i = localStorage.getItem('counter')
-  console.log(i)
-  counterSpan.innerHTML = i
+if (document.getElementsByClassName('match')[0]) {
+  myStorage.clear()
 }
 
-// music.forEach((audioElement) => { audioElement.classList.add('hidden') })
-
-// const searchForSongs = () => {
-//   const form = document.getElementsByClassName('hiddenForm')
-//   const hiddenForm = Array.from(form)
-//   hiddenForm.forEach(element => element.classList.remove('hiddenForm'))
-// }
-
-// changeButton.addEventListener('click', searchForSongs)
+if (!myStorage.getItem('counter')) {
+  counterSpan.classList.add('hidden')
+} else {
+  counterSpan.classList.remove('hidden')
+  counterSpan.innerHTML = myStorage.counter
+}
